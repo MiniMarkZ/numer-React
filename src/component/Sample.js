@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { Button, Container, Form, Table } from "react-bootstrap";
 import { evaluate } from 'mathjs'
+import './styles.css';
+
 
 const Sample =()=>{
     const print = () =>{
@@ -126,33 +128,41 @@ const Sample =()=>{
         console.log(valueXl)
     }
 
+
     return (
             <Container>
-                 <br></br>
-                <Form>
-                    <Form.Group className="mb-3" >
-                        <Form.Label> Input f(x)</Form.Label>
-                        <Form.Control type="text" id="equation" value={Equation} onChange={inputEquation} placeholder="Input f(x)" style={{width:"50%", }}/>
-                        <Form.Text className="text-Muted">สมการที่ดีคือ สมการที่ใส่เสื้อเหลือง</Form.Text>
-                        
-                    </Form.Group>
-                    <Form.Group className='mb-3'>
-                        <Form.Label> Input XL</Form.Label>
-                        <Form.Control type="number" id="XL" onChange={inputXL} style={{width:"50%", }} />
-                        <Form.Text className='text-Muted'>ค่า X ที่น้อยที่สุด รึป่าว ?</Form.Text>
-                    </Form.Group>
-                    <Form.Group className='mb-3'>
-                        <Form.Label> Input XR</Form.Label>
-                        <Form.Control type="number" id="XR" onChange={inputXR} style={{width:"50%", }} />
-                        <Form.Text className='text-Muted'>ค่า X ที่มากที่สุด รึป่าว ?</Form.Text>
-                    </Form.Group>
-                    <Button variant="primary" onClick={calculateRoot}>
-                        Calculate
-                    </Button>
-                </Form>
+                <br></br>
+                <div className="wrapper" >
+                    <div className="container2">
+                        <Form>
+                            <Form.Group className="mb-3" >
+                                <Form.Label> Input f(x)</Form.Label>
+                                <Form.Control type="text" id="equation" value={Equation} onChange={inputEquation} placeholder="Input f(x)" />
+                                <Form.Text className="text-Muted">สมการที่ดีคือ สมการที่สีเหลือง</Form.Text>
+                                
+                            </Form.Group>
+                            <Form.Group className='mb-3'>
+                                <Form.Label> Input XL</Form.Label>
+                                <Form.Control type="number" id="XL" onChange={inputXL}  />
+                                <Form.Text className='text-Muted'>ค่า X ที่น้อยที่สุด รึป่าว ?</Form.Text>
+                            </Form.Group>
+                            <Form.Group className='mb-3'>
+                                <Form.Label> Input XR</Form.Label>
+                                <Form.Control type="number" id="XR" onChange={inputXR}  />
+                                <Form.Text className='text-Muted'>ค่า X ที่มากที่สุด รึป่าว ?</Form.Text>
+                            </Form.Group>
+                            <Button variant="primary" onClick={calculateRoot}>
+                                Calculate
+                            </Button>
+                        </Form>
+                    </div>
+                    <div className="container1" >
+                    <h4 style={{textAlignVertical: "center",textAlign: "center",}}>กราฟบัค ไม่ยอมมา</h4>
+                    </div>
+                </div>
                 
                 <br></br>
-                <h5>Answer = {X.toPrecision(7)}</h5>
+                <h2 style={{textAlignVertical: "center",textAlign: "center",}}>Answer = {X.toPrecision(7)}</h2>
                 
                 {html}
                 

@@ -1,20 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import { Container, Form, Table } from 'react-bootstrap';
+import './styles.css';
 
 function Matrix_test() {
   const [rows, setRows] = useState(0);
   const [cols, setCols] = useState(0);
   const [matrix, setMatrix] = useState([]);
 
-  const handleRowsChange = (e) => {
+  const RowsChange = (e) => {
     setRows(parseInt(e.target.value));
   };
 
-  const handleColsChange = (e) => {
+  const ColumnsChange = (e) => {
     setCols(parseInt(e.target.value));
   };
 
-  const handleGenerate = () => {
+  useEffect(() => {
+    Generate();
+  });
+
+  const Generate = () => {
     const newMatrix = [];
     for (let i = 0; i < rows; i++) {
       const newRow = [];
@@ -26,7 +31,8 @@ function Matrix_test() {
     setMatrix(newMatrix);
   };
 
-  const handleInputChange = (e, row, col) => {
+
+  const InputChange = (e, row, col) => {
     const newMatrix = [...matrix];
     newMatrix[row][col] = e.target.value;
     setMatrix(newMatrix);
@@ -36,26 +42,27 @@ function Matrix_test() {
 
   return (
     <Container>
-      <Form>
-        <Form.Group controlId="formRows">
+      <Form className='wrapper'>
+        <Form.Group controlId="formRows" className='container2'>
           <Form.Label>Rows</Form.Label>
-          <Form.Control type="number" value={rows} onChange={handleRowsChange} />
+          <Form.Control type="number" value={rows} onChange={RowsChange} />
         </Form.Group>
-        <Form.Group controlId="formCols">
+        <Form.Group controlId="formCols" className='container1'>
           <Form.Label>Columns</Form.Label>
-          <Form.Control type="number" value={cols} onChange={handleColsChange} />
-        </Form.Group>
-        <Form.Group>
-          <Form.Control type="button" value="Generate" onClick={handleGenerate} />
+          <Form.Control type="number" value={cols} onChange={ColumnsChange} />
         </Form.Group>
       </Form>
+        <Form.Group>
+          <Form.Control type="button" value="ปุ่ม" onClick={Generate} />
+        </Form.Group>
+      
       <Table bordered>
         <tbody>
           {matrix.map((row, i) => (
             <tr key={i}>
               {row.map((cell, j) => (
                 <td key={j}>
-                  <Form.Control type="number" value={cell} onChange={(e) => handleInputChange(e, i, j)} />
+                  <Form.Control type="number" value={cell} onChange={(e) => InputChange(e, i, j)} />
                 </td>
               ))}
             </tr>
