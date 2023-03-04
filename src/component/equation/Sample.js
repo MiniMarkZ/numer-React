@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Button, Container, Form, Table } from "react-bootstrap";
 import { evaluate } from 'mathjs'
 import './styles.css';
+import Myline from "./Myline";
 
 
 const Sample =()=>{
@@ -11,6 +12,7 @@ const Sample =()=>{
         setValueXl(data.map((x)=>x.Xl));
         setValueXm(data.map((x)=>x.Xm));
         setValueXr(data.map((x)=>x.Xr));
+        setValueerror(data.map((x)=>x.error));
         return(
             <Container>
                 <Table striped bordered hover>
@@ -68,7 +70,8 @@ const Sample =()=>{
                     iteration:iter,
                     Xl:xl,
                     Xm:xm,
-                    Xr:xr
+                    Xr:xr,
+                    error:ea
                 }
                 data.push(obj)
                 xr = xm;
@@ -80,7 +83,8 @@ const Sample =()=>{
                     iteration:iter,
                     Xl:xl,
                     Xm:xm,
-                    Xr:xr
+                    Xr:xr,
+                    error:ea
                 }
                 data.push(obj)
                 xl = xm;
@@ -88,7 +92,7 @@ const Sample =()=>{
         }while(ea>e && iter<MAX)
         setX(xm)
     }
-
+    const [valueerror , setValueerror] = useState([]);
     const data =[];
     const [valueIter, setValueIter] = useState([]);
     const [valueXl, setValueXl] = useState([]);
@@ -102,6 +106,7 @@ const Sample =()=>{
     const [XL,setXL] = useState(0)
     const [XR,setXR] = useState(0)
 
+    
     const inputEquation = (event) =>{
         console.log(event.target.value)
         setEquation(event.target.value)
@@ -127,6 +132,10 @@ const Sample =()=>{
         console.log(valueIter)
         console.log(valueXl)
     }
+    const [chart,setChart]=useState(false)
+    const setData =(event) =>{
+        setChart(true)
+    }
 
 
     return (
@@ -151,13 +160,18 @@ const Sample =()=>{
                                 <Form.Control type="number" id="XR" onChange={inputXR}  />
                                 <Form.Text className='text-Muted'>ค่า X ที่มากที่สุด รึป่าว ?</Form.Text>
                             </Form.Group>
-                            <Button variant="primary" onClick={calculateRoot}>
+                            <Button variant="primary" onClick={() => {
+                                calculateRoot();
+                                setData();
+                                console.log("setChart",chart);
+                                }}>
                                 Calculate
                             </Button>
                         </Form>
                     </div>
                     <div className="container1" >
-                    <h4 style={{textAlignVertical: "center",textAlign: "center",}}>กราฟบัค ไม่ยอมมา</h4>
+                    <h4 style={{textAlignVertical: "center",textAlign: "center",}}>Bisection Chart</h4>
+                    {chart && <Myline Xm={valueXm} Xr={valueXr} name={"Bisection"} iter={valueIter} />}
                     </div>
                 </div>
                 

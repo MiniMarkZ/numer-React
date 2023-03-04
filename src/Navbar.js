@@ -12,10 +12,10 @@ function BasicExample() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <NavDropdown title="ชื่อเรื่องอะไรไม่รู้เส้น" id="basic-nav-dropdown">
+            <NavDropdown title="Roots of equation" id="basic-nav-dropdown">
             <NavDropdown.Item href="/Bisection">Bisection</NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="เดอะเมตริก" id="basic-nav-dropdown">
+            <NavDropdown title="Matrix" id="basic-nav-dropdown">
             <NavDropdown.Item href="/Matrix_test">test</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="tmp" id="basic-nav-dropdown">
