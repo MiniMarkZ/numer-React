@@ -15,12 +15,16 @@ const Myline = (props) => {
     },
     series: [
       {
-        name: 'Xm',
-        data: Data.Xm
+        name: 'Xl',
+        data: Data.Xl
       },
       {
         name: 'Xr',
         data: Data.Xr
+      },
+      {
+        name: 'error',
+        data: Data.Error
       }
     ]
   });

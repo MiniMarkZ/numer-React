@@ -1,9 +1,11 @@
 import Home from './home';
 import Navbar from './Navbar';
 import { Routes, Route } from "react-router-dom";
-import Sample from './component/equation/Sample';
+import Bisection from './component/equation/Bisection';
 import Matrix_test from './component/matrix/Matrix_test';
-import Myline from './component/equation/Myline';
+import FalsePosition from './component/equation/FalsePosition';
+import Onepoint from './component/equation/Onepoint';
+
 
 function App() {
   return (
@@ -13,9 +15,11 @@ function App() {
         <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/home' element={<Home/>}></Route>
-        <Route path='/Bisection' element= {<Sample/>}></Route>
+        <Route path='/Bisection' element= {<Bisection/>}></Route>
         <Route path='/Matrix_test' element= {<Matrix_test/>}></Route>
-        <Route path='/Line' element= {<Myline/>}></Route>
+        <Route path='/FalsePosition' element = {<FalsePosition/>}></Route>
+        <Route path='/Onepoint' element = {<Onepoint/>}></Route>
+        
         </Routes>
       </section>
     </div>
