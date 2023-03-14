@@ -1,6 +1,6 @@
 import React from "react";
 
-const Mytable = (props) => {
+const Mytable2 = (props) => {
 
   const propsname = Object.keys(props);
   const dataArray = Object.values(props);
@@ -13,8 +13,6 @@ const Mytable = (props) => {
             <th scope="col">{propsname[0]}</th>
             <th scope="col">{propsname[1]}</th>
             <th scope="col">{propsname[2]}</th>
-            <th scope="col">{propsname[3]}</th>
-            <th scope="col">{propsname[4]}</th>
           </tr>
         </thead>
         <tbody>
@@ -24,8 +22,6 @@ const Mytable = (props) => {
                 <th scope="row">{dataArray[0][index]}</th>
                 <td>{dataArray[1][index].toFixed(5)}</td>
                 <td>{dataArray[2][index].toFixed(5)}</td>
-                <td>{dataArray[3][index].toFixed(5)}</td>
-                <td>{(dataArray[4][index]).toFixed(5)} %</td>
               </tr>
             );
           })}
@@ -35,4 +31,4 @@ const Mytable = (props) => {
   );
 };
 
-export default Mytable;
+export default Mytable2;

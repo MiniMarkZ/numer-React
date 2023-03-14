@@ -5,11 +5,11 @@
 
   .container1 {
     width: 50%;
-    order: 1;
+    order: 0;
   }
   
   .container2 {
     width: 50%;
-    order: 0;
+    order: 1;
   }
   

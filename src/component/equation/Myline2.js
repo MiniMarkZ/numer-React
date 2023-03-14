@@ -1,9 +1,9 @@
 import React,{useState,useEffect} from 'react';
 import Chart from 'react-apexcharts';
 
-const Myline = (props) => {
+const Myline2 = (props) => {
   const [Data,setData] = useState(props);
-  // console.log('props',props)
+  console.log('props',props)
   
   const [chartData, setChartData] = React.useState({
     options: {
@@ -11,7 +11,7 @@ const Myline = (props) => {
         id: Data.name
       },
       xaxis: {
-        categories:  Data.iter
+        categories:  Data.Iteration
       },
       yaxis: {
         logBase: 10,
@@ -20,12 +20,8 @@ const Myline = (props) => {
     },
     series: [
       {
-        name: 'Xl',
-        data: Data.Xl
-      },
-      {
-        name: 'Xr',
-        data: Data.Xr
+        name: 'X',
+        data: Data.X
       },
       {
         name: 'error',
@@ -50,12 +46,8 @@ const Myline = (props) => {
       },
       series: [
         {
-          name: 'Xl',
-          data: props.Xl
-        },
-        {
-          name: 'Xr',
-          data: props.Xr
+          name: 'X',
+          data: props.X
         },
         {
           name: 'error',
@@ -70,4 +62,4 @@ const Myline = (props) => {
   );
 }
 
-export default Myline;
+export default Myline2;

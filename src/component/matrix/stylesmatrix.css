@@ -3,13 +3,13 @@
     flex-direction: row;
   }
 
-  .container1 {
-    width: 50%;
-    order: 1;
-  }
-  
-  .container2 {
+  .content1 {
     width: 50%;
     order: 0;
+  }
+  
+  .content2 {
+    width: 50%;
+    order: 1;
   }
   

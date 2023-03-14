@@ -4,6 +4,7 @@ import { evaluate } from 'mathjs'
 import './styles.css';
 import Myline from "./Myline";
 import Mytable from "./Mytable";
+import Popup from "./Popup";
 
 
 const Bisection =()=>{
@@ -18,6 +19,7 @@ const Bisection =()=>{
     const [XL,setXL] = useState(0)
     const [XR,setXR] = useState(0)
     const [Nodata,setNodata]=useState(false)
+    const [Calerror,setCalerror] = useState(false)
 
     const setall = () =>{
         console.log(data)
@@ -29,26 +31,28 @@ const Bisection =()=>{
     }
 
     const error =(xold, xnew)=> Math.abs((xnew-xold)/xnew)*100;
-   
+    
     const Calbisection = (xl, xr) => {
-        var xm,fXm,fXr,ea,scope;
+        var xm,fXm,fXr,ea,fXl;
         var iter = 0;
         var MAX = 50;
         const e = 0.00001;
         var obj={};
+        xm = (xl+xr)/2.0;
+        fXr = evaluate(Equation, {x:xr})
+        fXl = evaluate(Equation, {x:xl})
+        console.log("fXr * fXl > 0 =",fXr * fXm)
+        if(fXr * fXl > 0){
+            console.log('error')
+            setCalerror(true)
+            setNodata(false)
+            return
+        }
         do
         {
             xm = (xl+xr)/2.0;
-            scope = {
-                x:xr,
-            }
-            fXr = evaluate(Equation, scope)
-
-            scope = {
-                x:xm,
-            }
-            fXm = evaluate(Equation, scope)
-            console.log("xm",xm)
+            fXr = evaluate(Equation, {x:xr})
+            fXm = evaluate(Equation, {x:xm})
             iter ++;
             if (fXm*fXr > 0)
             {
@@ -119,25 +123,27 @@ const Bisection =()=>{
                  </Row>
                 <div className="wrapper" >
                 
-                    <div className="container2">
+                    <div className="container1">
                         <Form>
                             <Form.Group className="mb-3" >
                                 <Form.Label> Input f(x)</Form.Label>
                                 <Form.Control type="text" id="equation" value={Equation} onChange={inputEquation} placeholder="Input f(x)" />
-                                <Form.Text className="text-Muted">สมการที่ดีคือ สมการที่สีเหลือง</Form.Text>
+                                {/* <Form.Text className="text-Muted">สมการที่ดีคือ สมการที่สีเหลือง</Form.Text> */}
                                 
                             </Form.Group>
                             <Form.Group className='mb-3'>
                                 <Form.Label> Input XL</Form.Label>
                                 <Form.Control type="number" id="XL" onChange={inputXL}  />
-                                <Form.Text className='text-Muted'>ค่า X ที่น้อยที่สุด รึป่าว ?</Form.Text>
+                                {/* <Form.Text className='text-Muted'>ค่า X ที่น้อยที่สุด รึป่าว ?</Form.Text> */}
                             </Form.Group>
                             <Form.Group className='mb-3'>
                                 <Form.Label> Input XR</Form.Label>
                                 <Form.Control type="number" id="XR" onChange={inputXR}  />
-                                <Form.Text className='text-Muted'>ค่า X ที่มากที่สุด รึป่าว ?</Form.Text>
+                                {/* <Form.Text className='text-Muted'>ค่า X ที่มากที่สุด รึป่าว ?</Form.Text> */}
                             </Form.Group>
                             <Button variant="primary" onClick={() => {
+                                setX(0)
+                                setCalerror(false)
                                 calculateRoot();
                                 setData();
                                 console.log("setNodata",Nodata);
@@ -146,6 +152,9 @@ const Bisection =()=>{
                             </Button>
                         </Form>
                     </div>
+                    
+                    {console.log("cal",Calerror)}
+                    {Calerror == true&&<Popup />}
                     <div className="container1" >
                     <h4 style={{textAlignVertical: "center",textAlign: "center",}}>Bisection Chart</h4>
                     {Nodata== false && <img src="https://cdn.discordapp.com/attachments/900255663081545761/1082615467186860084/Rolling-4.5s-200px_1.gif" alt="Loading..." />}

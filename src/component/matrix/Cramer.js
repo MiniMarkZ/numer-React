@@ -56,7 +56,7 @@ function Matrix_test() {
           <Form.Control type="button" value="ปุ่ม" onClick={Generate} />
         </Form.Group>
       
-      <Table bordered>
+      <Table bordered className=''>
         <tbody>
           {matrix.map((row, i) => (
             <tr key={i}>
