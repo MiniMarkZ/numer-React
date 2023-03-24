@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { useState , useEffect } from "react"
 import { Button, Container, Form, Row , Dropdown } from "react-bootstrap";
 import { evaluate } from 'mathjs'
 import './styles.css';
 import Myline from "./Myline";
 import Mytable from "./Mytable";
 import Popup from "./Popup";
-
+import axios from 'axios';
 
 const Bisection =()=>{
     const [valueerror , setValueerror] = useState([]);
@@ -14,7 +14,7 @@ const Bisection =()=>{
     const [valueXl, setValueXl] = useState([]);
     const [valueXm, setValueXm] = useState([]);
     const [valueXr, setValueXr] = useState([]);
-    const [Equation,setEquation] = useState("(x^4)-13")
+    const [Equation,setEquation] = useState("") //(x^4)-13
     const [X,setX] = useState(0)
     const [XL,setXL] = useState(0)
     const [XR,setXR] = useState(0)
@@ -102,6 +102,7 @@ const Bisection =()=>{
     }
 
     const calculateRoot = () =>{
+        console.log("asdadspkoasdo",api)
         const xlnum = parseFloat(XL)
         const xrnum = parseFloat(XR)
         Calbisection(xlnum,xrnum);
@@ -111,7 +112,30 @@ const Bisection =()=>{
     const setData =(event) =>{
         setNodata(true)
     }
+    
+    const [api,setApi] = useState([])
+    useEffect(() => {
+        axios.get('http://localhost:8080/Bisection')
+          .then(response => {
+            setApi(response.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+    }, []);
 
+
+    const Sample = (event) =>{
+        const value = event.target.getAttribute("value");
+        console.log("XL",api[value].XL);
+        console.log("XR",api[value].XR);
+        console.log(api[value].Equation)
+        setEquation(api[value].Equation)
+        setXL(api[value].XL)
+        setXR(api[value].XR)
+        
+
+    }
 
     return (
             <Container>
@@ -133,12 +157,12 @@ const Bisection =()=>{
                             </Form.Group>
                             <Form.Group className='mb-3'>
                                 <Form.Label> Input XL</Form.Label>
-                                <Form.Control type="number" id="XL" onChange={inputXL}  />
+                                <Form.Control type="number" id="XL" value={XL} onChange={inputXL}  />
                                 {/* <Form.Text className='text-Muted'>ค่า X ที่น้อยที่สุด รึป่าว ?</Form.Text> */}
                             </Form.Group>
                             <Form.Group className='mb-3'>
                                 <Form.Label> Input XR</Form.Label>
-                                <Form.Control type="number" id="XR" onChange={inputXR}  />
+                                <Form.Control type="number" id="XR" value={XR}onChange={inputXR}  />
                                 {/* <Form.Text className='text-Muted'>ค่า X ที่มากที่สุด รึป่าว ?</Form.Text> */}
                             </Form.Group>
                             <div className="row">
@@ -159,9 +183,9 @@ const Bisection =()=>{
                                     Samples
                                 </a>
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li><a className="dropdown-item" href="#">Sample1</a></li>
-                                    <li><a className="dropdown-item" href="#">Sample2</a></li>
-                                    <li><a className="dropdown-item" href="#">Sample3</a></li>
+                                    <li><a className="dropdown-item" value="0" onClick={Sample}>Sample1</a></li>
+                                    <li><a className="dropdown-item" value="1" onClick={Sample}>Sample2</a></li>
+                                    {/* <li><a className="dropdown-item" value="2" onClick={Sample}>Sample3</a></li> */}
                                 </ul>
                                 </div>
                             </div>

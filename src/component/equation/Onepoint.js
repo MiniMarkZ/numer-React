@@ -1,18 +1,18 @@
-import { useState } from "react"
+import { useState , useEffect } from "react"
 import { Button, Container, Form, Row } from "react-bootstrap";
 import { evaluate , parse } from 'mathjs'
 import './styles.css';
 import Myline2 from "./Myline2";
 import Mytable2 from "./Mytable2";
 import Popup from "./Popup";
-
+import axios from "axios";
 
 const Onepoint =()=>{
     const [valueerror , setValueerror] = useState([]);
     const data =[];
     const [valueIter, setValueIter] = useState([]);
     const [valueX, setValueX] = useState([]);
-    const [Equation,setEquation] = useState("(((2*x)+5)/2)^(1/3)")
+    const [Equation,setEquation] = useState("")
     const [X,setX] = useState(0)
     const [X0,setX0] = useState(0)
     const [Nodata,setNodata]=useState(false)
@@ -78,6 +78,25 @@ const Onepoint =()=>{
         setNodata(true)
     }
 
+    const [api,setApi] = useState([])
+    useEffect(() => {
+        axios.get('http://localhost:8080/Onepoint')
+          .then(response => {
+            setApi(response.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+    }, []);
+
+
+    const Sample = (event) =>{
+        const value = event.target.getAttribute("value");
+        console.log("XL",api[value].X0);
+        console.log(api[value].Equation)
+        setEquation(api[value].Equation)
+        setX0(api[value].X0)
+    }
 
     return (
             <Container>
@@ -99,7 +118,7 @@ const Onepoint =()=>{
                             </Form.Group>
                             <Form.Group className='mb-3'>
                                 <Form.Label> Input X0</Form.Label>
-                                <Form.Control type="number" id="X0" onChange={inputX0}  />
+                                <Form.Control type="number" id="X0" value={X0} onChange={inputX0}  />
                                 {/* <Form.Text className='text-Muted'>ค่า X ที่น้อยที่สุด รึป่าว ?</Form.Text> */}
                             {/* </Form.Group>
                             <Form.Group className='mb-3'>
@@ -125,9 +144,9 @@ const Onepoint =()=>{
                                     Samples
                                 </a>
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li><a className="dropdown-item" href="#">Sample1</a></li>
-                                    <li><a className="dropdown-item" href="#">Sample2</a></li>
-                                    <li><a className="dropdown-item" href="#">Sample3</a></li>
+                                    <li><a className="dropdown-item" value="0" onClick={Sample}>Sample1</a></li>
+                                    {/* <li><a className="dropdown-item" href="#">Sample2</a></li>
+                                    <li><a className="dropdown-item" href="#">Sample3</a></li> */}
                                 </ul>
                                 </div>
                             </div>
