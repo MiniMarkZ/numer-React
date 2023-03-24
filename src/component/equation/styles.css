@@ -4,12 +4,12 @@
   }
 
   .container1 {
-    width: 50%;
+    width: 30%;
     order: 0;
   }
   
   .container2 {
-    width: 50%;
+    width: 70%;
     order: 1;
   }
   

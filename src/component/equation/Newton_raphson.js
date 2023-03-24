@@ -114,8 +114,9 @@ const Newton_raphson = () => {
                                 <Form.Control type="number" id="XR" onChange={inputXR}  />
                                 <Form.Text className='text-Muted'>ค่า X ที่มากที่สุด รึป่าว ?</Form.Text>
                             </Form.Group> */}
+                            <div className="row">
+                            <div className="col">
                             <Button variant="primary" onClick={() => {
-                               
                                 setX(0)
                                 calculateRoot();
                                 setData();
@@ -123,6 +124,20 @@ const Newton_raphson = () => {
                                 }}>
                                 Calculate
                             </Button>
+                            </div>
+                            <div className="col-sm-6">
+                            <div className="dropdown">
+                                <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Samples
+                                </a>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a className="dropdown-item" href="#">Sample1</a></li>
+                                    <li><a className="dropdown-item" href="#">Sample2</a></li>
+                                    <li><a className="dropdown-item" href="#">Sample3</a></li>
+                                </ul>
+                                </div>
+                            </div>
+                            </div>
                         </Form>
                     </div>
                     

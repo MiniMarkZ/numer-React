@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Button, Container, Form, Row } from "react-bootstrap";
+import { Button, Container, Form, Row , Dropdown } from "react-bootstrap";
 import { evaluate } from 'mathjs'
 import './styles.css';
 import Myline from "./Myline";
@@ -141,7 +141,9 @@ const Bisection =()=>{
                                 <Form.Control type="number" id="XR" onChange={inputXR}  />
                                 {/* <Form.Text className='text-Muted'>ค่า X ที่มากที่สุด รึป่าว ?</Form.Text> */}
                             </Form.Group>
-                            <Button variant="primary" onClick={() => {
+                            <div className="row">
+                            <div className="col">
+                                <Button variant="primary" onClick={() => {
                                 setX(0)
                                 setCalerror(false)
                                 calculateRoot();
@@ -149,16 +151,30 @@ const Bisection =()=>{
                                 console.log("setNodata",Nodata);
                                 }}>
                                 Calculate
-                            </Button>
+                                </Button>
+                            </div>
+                            <div className="col-sm-6">
+                                <div className="dropdown">
+                                <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Samples
+                                </a>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a className="dropdown-item" href="#">Sample1</a></li>
+                                    <li><a className="dropdown-item" href="#">Sample2</a></li>
+                                    <li><a className="dropdown-item" href="#">Sample3</a></li>
+                                </ul>
+                                </div>
+                            </div>
+                            </div>
                         </Form>
                     </div>
                     
                     {console.log("cal",Calerror)}
                     {Calerror == true&&<Popup />}
-                    <div className="container1" >
-                    <h4 style={{textAlignVertical: "center",textAlign: "center",}}>Bisection Chart</h4>
-                    {Nodata== false && <img src="https://cdn.discordapp.com/attachments/900255663081545761/1082615467186860084/Rolling-4.5s-200px_1.gif" alt="Loading..." />}
-                    {Nodata && <Myline Iteration={valueIter} Xl= {valueXl} Xm={valueXm} Xr={valueXr} name={"Bisection"} Error={valueerror} />}
+                    <div className="container2" >
+                        <h4 style={{textAlignVertical: "center",textAlign: "center",}}>Bisection Chart</h4>
+                        {Nodata== false && <img src="https://cdn.discordapp.com/attachments/900255663081545761/1082615467186860084/Rolling-4.5s-200px_1.gif" alt="Loading..." />}
+                        {Nodata && <Myline Iteration={valueIter} Xl= {valueXl} Xm={valueXm} Xr={valueXr} name={"Bisection"} Error={valueerror} />}
                     </div>
                 </div>
                 

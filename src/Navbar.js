@@ -15,10 +15,10 @@ function BasicExample() {
             <NavDropdown title="Roots of equation" id="basic-nav-dropdown">
             <NavDropdown.Item href="/Bisection">Bisection</NavDropdown.Item>
             <NavDropdown.Item href="/FalsePosition">False Position</NavDropdown.Item>
-            <NavDropdown.Item href="/Onepoint">One Point ยังไม่เสร็จ</NavDropdown.Item>
+            <NavDropdown.Item href="/Onepoint">One Point </NavDropdown.Item>
             <NavDropdown.Item href="/Newton.r">Newton raphson</NavDropdown.Item>
             <NavDropdown.Item href="/Secant">Secant</NavDropdown.Item>
-            <NavDropdown.Item href="/Taylor_series">Taylor_series ยังไม่เสร็จ</NavDropdown.Item>
+            <NavDropdown.Item href="/Taylor">Taylor_series ยังไม่เสร็จ</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Matrix" id="basic-nav-dropdown">
             <NavDropdown.Item href="/Matrix_test">test</NavDropdown.Item>

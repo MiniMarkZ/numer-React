@@ -4,7 +4,6 @@ import Chart from 'react-apexcharts';
 const Myline2 = (props) => {
   const [Data,setData] = useState(props);
   console.log('props',props)
-  
   const [chartData, setChartData] = React.useState({
     options: {
       chart: {
@@ -41,7 +40,8 @@ const Myline2 = (props) => {
           categories: props.iter
         },
         yaxis: {
-          logBase: 10
+          logBase: 10,
+          forceIntegers: true // Add this property to force integers on y-axis
         }
       },
       series: [
@@ -58,7 +58,7 @@ const Myline2 = (props) => {
   }, [props]);
 
   return (
-    <Chart options={chartData.options} series={chartData.series} type="line" width={500} height={320} />
+    <Chart options={chartData.options} series={chartData.series} type="line" width={1000} height={320} />
   );
 }
 

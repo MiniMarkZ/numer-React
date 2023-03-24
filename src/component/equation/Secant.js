@@ -122,6 +122,8 @@ const Secant = () => {
                                 <Form.Control type="number" id="XR" onChange={inputX1}  />
                                 
                             </Form.Group>
+                            <div className="row">
+                            <div className="col">
                             <Button variant="primary" onClick={() => {
                                
                                 setX(0)
@@ -131,6 +133,20 @@ const Secant = () => {
                                 }}>
                                 Calculate
                             </Button>
+                            </div>
+                            <div className="col-sm-6">
+                            <div className="dropdown">
+                                <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Samples
+                                </a>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a className="dropdown-item" href="#">Sample1</a></li>
+                                    <li><a className="dropdown-item" href="#">Sample2</a></li>
+                                    <li><a className="dropdown-item" href="#">Sample3</a></li>
+                                </ul>
+                                </div>
+                            </div>
+                            </div>
                         </Form>
                     </div>
                     
