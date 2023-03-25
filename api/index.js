@@ -31,26 +31,72 @@ app.get('/Bisection', (req, res) => {
 });
 
 
-
+/**
+ * @swagger
+ * /FalsePosition:
+ *   get:
+ *     description: Returns equations for FalsePosition method
+ *     responses:
+ *       200:
+ *         description: Success
+ */
 app.get('/FalsePosition', (req, res) => {
     const falsePositionEquations = equations.filter(equation => equation.method === 'FalsePosition');
     res.json(falsePositionEquations);
 });
 
+/**
+ * @swagger
+ * /Onepoint:
+ *   get:
+ *     description: Returns equations for Onepoint method
+ *     responses:
+ *       200:
+ *         description: Success
+ */
 app.get('/Onepoint', (req, res) => {
     const OnepointEquations = equations.filter(equation => equation.method === 'Onepoint');
     res.json(OnepointEquations);
 });
 
+/**
+ * @swagger
+ * /Newtonraphson:
+ *   get:
+ *     description: Returns equations for Newtonraphson method
+ *     responses:
+ *       200:
+ *         description: Success
+ */
 app.get('/Newtonraphson', (req, res) => {
     const NewtonraphsonEquations = equations.filter(equation => equation.method === 'Newtonraphson');
     res.json(NewtonraphsonEquations);
 });
 
+/**
+ * @swagger
+ * /Secant:
+ *   get:
+ *     description: Returns equations for Secant method
+ *     responses:
+ *       200:
+ *         description: Success
+ */
 app.get('/Secant', (req, res) => {
     const SecantEquations = equations.filter(equation => equation.method === 'Secant');
     res.json(SecantEquations);
 });
+
+
+app.get('/testswagger', (req, res) => {
+    const { a, b, c } = req.query;
+    if (a == 112 && b == 44 && c == 'prayut') {
+      res.send('tumak');
+    } else {
+      res.send('lnwza');
+    }
+  });
+
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });

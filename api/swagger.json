@@ -3,7 +3,7 @@
     "info": {
       "title": "Numerical Methods API",
       "description": "Test swagger แบบงงมากๆ", 
-      "version": "1.0.0"
+      "version": "beta 1.7.3"
     },
     "host": "localhost:8080",
     "basePath": "/",
@@ -69,6 +69,55 @@
               "description": "OK"
             }
           }
+        }
+      },
+      "/testswagger":{
+        "get":{
+            "summary":"Test swagger",
+            "description": "Test Swagger endpoint with parameters",
+            "parameters":[
+                {
+                    "name":"a",
+                    "in":"query",
+                    "schema":{
+                        "type":"integer",
+                        "example":112
+                    },
+                    "required":true
+                },
+                {
+                    "name":"b",
+                    "in":"query",
+                    "schema":{
+                        "type":"integer",
+                        "example":44
+                    },
+                    "required":true
+                },
+                {
+                    "name":"c",
+                    "in":"query",
+                    "schema":{
+                        "type":"integer",
+                        "example":"prayut"
+                    },
+                    "required":true 
+                }
+            ],
+            "responses":{
+                "200":{
+                    "description" :"OK",
+                    "content":{
+                        "text/plain":{
+                            "schema":{
+                                "type":"string",
+                                "example":"tumak or lnwza"
+                            }
+                        }
+                    }
+                    
+                }
+            }
         }
       }
     }
