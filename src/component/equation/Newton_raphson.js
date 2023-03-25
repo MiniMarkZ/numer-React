@@ -91,7 +91,7 @@ const Newton_raphson = () => {
 
   const [api,setApi] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:8080/Newtonraphson')
+    axios.get('http://localhost:8080/getsample/Newtonraphson')
       .then(response => {
         setApi(response.data);
       })

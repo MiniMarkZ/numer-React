@@ -80,7 +80,7 @@ const Onepoint =()=>{
 
     const [api,setApi] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:8080/Onepoint')
+        axios.get('http://localhost:8080/getsample/Onepoint')
           .then(response => {
             setApi(response.data);
           })

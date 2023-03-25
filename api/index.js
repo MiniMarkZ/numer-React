@@ -11,8 +11,10 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(cors())
 
-app.get('/', (req, res) => {
-  res.send('Hello World! this Api numer');
+app.get('/getsample/:path*', (req, res) => {
+  var path = req.params.path + req.params[0];
+  const bisectionEquations = equations.filter(equation => equation.method === path);
+  res.send(bisectionEquations);
 });
 
 
@@ -31,61 +33,61 @@ app.get('/Bisection', (req, res) => {
 });
 
 
-/**
- * @swagger
- * /FalsePosition:
- *   get:
- *     description: Returns equations for FalsePosition method
- *     responses:
- *       200:
- *         description: Success
- */
-app.get('/FalsePosition', (req, res) => {
-    const falsePositionEquations = equations.filter(equation => equation.method === 'FalsePosition');
-    res.json(falsePositionEquations);
-});
+// /**
+//  * @swagger
+//  * /FalsePosition:
+//  *   get:
+//  *     description: Returns equations for FalsePosition method
+//  *     responses:
+//  *       200:
+//  *         description: Success
+//  */
+// app.get('/FalsePosition', (req, res) => {
+//     const falsePositionEquations = equations.filter(equation => equation.method === 'FalsePosition');
+//     res.json(falsePositionEquations);
+// });
 
-/**
- * @swagger
- * /Onepoint:
- *   get:
- *     description: Returns equations for Onepoint method
- *     responses:
- *       200:
- *         description: Success
- */
-app.get('/Onepoint', (req, res) => {
-    const OnepointEquations = equations.filter(equation => equation.method === 'Onepoint');
-    res.json(OnepointEquations);
-});
+// /**
+//  * @swagger
+//  * /Onepoint:
+//  *   get:
+//  *     description: Returns equations for Onepoint method
+//  *     responses:
+//  *       200:
+//  *         description: Success
+//  */
+// app.get('/Onepoint', (req, res) => {
+//     const OnepointEquations = equations.filter(equation => equation.method === 'Onepoint');
+//     res.json(OnepointEquations);
+// });
 
-/**
- * @swagger
- * /Newtonraphson:
- *   get:
- *     description: Returns equations for Newtonraphson method
- *     responses:
- *       200:
- *         description: Success
- */
-app.get('/Newtonraphson', (req, res) => {
-    const NewtonraphsonEquations = equations.filter(equation => equation.method === 'Newtonraphson');
-    res.json(NewtonraphsonEquations);
-});
+// /**
+//  * @swagger
+//  * /Newtonraphson:
+//  *   get:
+//  *     description: Returns equations for Newtonraphson method
+//  *     responses:
+//  *       200:
+//  *         description: Success
+//  */
+// app.get('/Newtonraphson', (req, res) => {
+//     const NewtonraphsonEquations = equations.filter(equation => equation.method === 'Newtonraphson');
+//     res.json(NewtonraphsonEquations);
+// });
 
-/**
- * @swagger
- * /Secant:
- *   get:
- *     description: Returns equations for Secant method
- *     responses:
- *       200:
- *         description: Success
- */
-app.get('/Secant', (req, res) => {
-    const SecantEquations = equations.filter(equation => equation.method === 'Secant');
-    res.json(SecantEquations);
-});
+// /**
+//  * @swagger
+//  * /Secant:
+//  *   get:
+//  *     description: Returns equations for Secant method
+//  *     responses:
+//  *       200:
+//  *         description: Success
+//  */
+// app.get('/Secant', (req, res) => {
+//     const SecantEquations = equations.filter(equation => equation.method === 'Secant');
+//     res.json(SecantEquations);
+// });
 
 
 app.get('/testswagger', (req, res) => {

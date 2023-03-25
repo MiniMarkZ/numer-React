@@ -115,7 +115,7 @@ const Bisection =()=>{
     
     const [api,setApi] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:8080/Bisection')
+        axios.get('http://localhost:8080/getsample/Bisection')
           .then(response => {
             setApi(response.data);
           })

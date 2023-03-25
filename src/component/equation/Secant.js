@@ -97,7 +97,7 @@ const Secant = () => {
 
   const [api,setApi] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:8080/Secant')
+    axios.get('http://localhost:8080/getsample/Secant')
       .then(response => {
         setApi(response.data);
       })

@@ -123,7 +123,7 @@ const FalsePosition =()=>{
 
     const [api,setApi] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:8080/FalsePosition')
+        axios.get('http://localhost:8080/getsample/FalsePosition')
           .then(response => {
             setApi(response.data);
           })
