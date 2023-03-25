@@ -1,0 +1,76 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Numerical Methods API",
+      "description": "Test swagger แบบงงมากๆ", 
+      "version": "1.0.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/": {
+        "get": {
+          "summary": "Returns a greeting message",
+          "responses": {
+            "200": {
+              "description": "OK "
+            }
+          }
+        }
+      },
+      "/Bisection": {
+        "get": {
+          "summary": "Returns equations for Bisection method",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/FalsePosition": {
+        "get": {
+          "summary": "Returns equations for FalsePosition method",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/Onepoint": {
+        "get": {
+          "summary": "Returns equations for Onepoint method",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/Newtonraphson": {
+        "get": {
+          "summary": "Returns equations for Newtonraphson method",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/Secant": {
+        "get": {
+          "summary": "Returns equations for Secant method",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      }
+    }
+  }
+  
