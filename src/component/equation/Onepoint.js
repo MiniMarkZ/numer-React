@@ -3,7 +3,7 @@ import { Button, Container, Form, Row } from "react-bootstrap";
 import { evaluate , parse } from 'mathjs'
 import './styles.css';
 import Myline2 from "./Myline2";
-import Mytable2 from "./Mytable2";
+import Mytable from "./Mytable";
 import Popup from "./Popup";
 import axios from "axios";
 
@@ -164,7 +164,7 @@ const Onepoint =()=>{
                 <br></br>
                 <h2 style={{textAlignVertical: "center",textAlign: "center",}}>Answer = {X.toPrecision(7)}</h2>
                 {Nodata== false && <img src="https://cdn.discordapp.com/attachments/900255663081545761/1082614220052516864/Ellipsis-12.5s-200px.gif" alt="Loading..." />}
-                {Nodata && <Mytable2 Iteration={valueIter} X= {valueX} Error={valueerror}  />}
+                {Nodata && <Mytable Iteration={valueIter} X= {valueX} Error={valueerror}  />}
                 
             </Container>
            

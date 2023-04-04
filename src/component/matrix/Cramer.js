@@ -50,23 +50,28 @@ function App() {
     setResult(newResult);
   };
 
-  function cramer(matrixA, matrixB) {
+  function cramer() {
+    console.log(matrixA)
     const n = matrixA.length;
     const detA = determinant(matrixA);
-  
+    console.log("detA",detA)
     if (detA === 0) {
       return null; // matrixA is singular, no unique solution exists
     }
-  
+    
     const results = [];
   
     for (let i = 0; i < n; i++) {
       const matrixAi = matrixA.map((row, j) => row.map((cell, k) => (k === i ? matrixB[j] : cell)));
       const detAi = determinant(matrixAi);
+      console.log("detAi",detAi)
       const xi = detAi / detA;
+      console.log("xi =",xi)
       results.push(xi);
+      console.log("result =",results)
     }
-  
+    console.log(results)
+    setResult(results)
     return results;
   }
   
@@ -84,7 +89,7 @@ function App() {
       const sign = i % 2 === 0 ? 1 : -1;
       det += sign * matrix[0][i] * determinant(submatrix);
     }
-    setResult(det)
+    console.log("det คือ ",det)
     return det;
   }
   
@@ -172,7 +177,9 @@ function App() {
         <div>
           <h2>Result:</h2>
           {result.map((cell, i) => (
-            <div key={i}>{cell}</div>
+            <div key={i}>
+              <h5>T{i} = {cell}</h5>
+            </div>
           ))}
         </div>
       )}

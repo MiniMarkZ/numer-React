@@ -7,8 +7,17 @@
     font-size: 16px;
   }
   
-  .custom-button:hover {
+s.custom-button:hover {
     background-color: lightblue;
     cursor: pointer;
-  }
+}
+  
+.custom-card {
+    margin-right: 100px;
+    height: 100%;
+}
+  
+.row {
+    display: flex;
+}
   
