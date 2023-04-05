@@ -78,7 +78,7 @@ const Home = () => {
             <Card.Body>
               <Card.Title>Taylor_series</Card.Title>
               <Card.Text className="mt-4">
-                การหา Root โดยใช้วิธีการของ Taylor series
+                การหา Root โดยใช้วิธีการของ Taylor series v.1
               </Card.Text>
               <Link to="/Taylor" className="stretched-link"></Link>
             </Card.Body>
@@ -101,11 +101,11 @@ const Home = () => {
         <Col md="auto">
           <Card className="mx-2 custom-card">
             <Card.Body>
-              <Card.Title>เรื่องของอนาคตใหม่</Card.Title>
+              <Card.Title>Polynomial regression</Card.Title>
               <Card.Text className="mt-4">
-                อุอิอุอิ
+                ทำ regression โดยใช้วิธี Polynomial v.1
               </Card.Text>
-              <Link to="/่" className="stretched-link"></Link>
+              <Link to="/polynomial" className="stretched-link"></Link>
             </Card.Body>
           </Card>
         </Col>

@@ -9,7 +9,7 @@ import Newton_raphson from './component/equation/Newton_raphson';
 import Secant from './component/equation/Secant';
 import Taylor from './component/equation/Taylor_series';
 import Cramer from './component/matrix/Cramer';
-
+import Polynomial from './component/regression/Polynomial';
 
 
 function App() {
@@ -25,9 +25,10 @@ function App() {
         <Route path='/FalsePosition' element = {<FalsePosition/>}></Route>
         <Route path='/Onepoint' element = {<Onepoint/>}></Route>
         <Route path='/Newton.r' element = {<Newton_raphson/>}></Route>
-       <Route path='/Secant' element = {<Secant/>}></Route>
-       <Route path='/Taylor' element = {<Taylor/>}></Route>
-       Cramer<Route path='/Cramer' element = {<Cramer/>}></Route>
+        <Route path='/Secant' element = {<Secant/>}></Route>
+        <Route path='/Taylor' element = {<Taylor/>}></Route>
+        <Route path='/Cramer' element = {<Cramer/>}></Route>
+        <Route path='/polynomial' element = {<Polynomial/>}></Route>
         </Routes>
       </section>
     </div>

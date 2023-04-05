@@ -20,10 +20,13 @@ function BasicExample() {
             <NavDropdown.Item href="/Secant">Secant</NavDropdown.Item>
             <NavDropdown.Item href="/Taylor">Taylor_series </NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Matrix" id="basic-nav-dropdown">
+          <NavDropdown title="Matrix" id="basic-nav-dropdown">
             {/* <NavDropdown.Item href="/Matrix_test">test</NavDropdown.Item> */}
             <NavDropdown.Item href="/Cramer">Cramer's Rule</NavDropdown.Item>
-            </NavDropdown>
+          </NavDropdown>
+          <NavDropdown title="Regression" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/Polynomial">Polynomial Regression</NavDropdown.Item>
+          </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
