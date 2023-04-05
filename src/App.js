@@ -12,6 +12,7 @@ import Cramer from './component/matrix/Cramer';
 import Polynomial from './component/regression/Polynomial';
 
 
+
 function App() {
   return (
     <div style={{textAlignVertical: "center",textAlign: "center",}}>
@@ -29,6 +30,7 @@ function App() {
         <Route path='/Taylor' element = {<Taylor/>}></Route>
         <Route path='/Cramer' element = {<Cramer/>}></Route>
         <Route path='/polynomial' element = {<Polynomial/>}></Route>
+
         </Routes>
       </section>
     </div>

@@ -105,10 +105,35 @@ const Home = () => {
               <Card.Text className="mt-4">
                 ทำ regression โดยใช้วิธี Polynomial v.1
               </Card.Text>
-              <Link to="/polynomial" className="stretched-link"></Link>
+              <Link to="/Polynomial" className="stretched-link"></Link>
             </Card.Body>
           </Card>
         </Col>
+      </Row>
+      <br></br>
+      <Row className="justify-content-center" xs={1} sm={2} md={2} lg={3} xl={3} xxl={3}>
+        {/* <Col md="auto">
+          <Card className="mx-2 custom-card">
+            <Card.Body>
+              <Card.Title>Polynomial regression</Card.Title>
+              <Card.Text className="mt-4">
+                การคำนวณเมทริกซ์โดยใช้วิธีการของ Polynomial regression
+              </Card.Text>
+              <Link to="/polynomial" className="stretched-link"></Link>
+            </Card.Body>
+          </Card>
+        </Col> */}
+        {/* <Col md="auto">
+          <Card className="mx-2 custom-card">
+            <Card.Body>
+              <Card.Title>Polynomial regression</Card.Title>
+              <Card.Text className="mt-4">
+                ทำ regression โดยใช้วิธี Polynomial v.1
+              </Card.Text>
+              <Link to="/polynomial" className="stretched-link"></Link>
+            </Card.Body>
+          </Card>
+        </Col> */}
       </Row>
       
     </Container>

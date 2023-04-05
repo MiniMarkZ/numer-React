@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import polynomialRegression from 'ml-regression-polynomial';
-import ReactApexChart from 'react-apexcharts';
+import ScatterPlot from './ScatterPlot'
 
 
 function Polynomial() {
@@ -10,9 +10,8 @@ function Polynomial() {
   const [x, setX] = useState(0);
   const [matrix, setMatrix] = useState([...Array(n)].map(() => Array(m).fill(0)));
   const [result, setResult] = useState(null);
-  
-  const [chartOptions, setChartOptions] = useState({});
-  const [chartData, setChartData] = useState({});
+  const [chartx, setChartx] = useState([]);
+  const [charty, setCharty] = useState([]);
 
 
   const handleMChange = (e) => {
@@ -85,7 +84,10 @@ function Polynomial() {
       X.push(xi);
       y.push(yi);
     }
-  
+    setCharty(y);
+    setChartx(X);
+    console.log("x",X)
+    console.log("y",y)
     const degree = m - 1; 
     const regression = new polynomialRegression(X, y, degree);
     const result = regression.predict(x);
@@ -98,7 +100,7 @@ function Polynomial() {
   return (
     <Container>
       <br></br>
-      <h1>Polynomial Calculator</h1>
+      <h1>Polynomial regression</h1>
       <Form >
         <Row xs={4} className="mt-4 d-flex justify-content-center align-items-center">
           <Col>
@@ -140,16 +142,10 @@ function Polynomial() {
           <h2>
             <Form.Label>Answer is {result}</Form.Label>
           </h2>
-          <Row>
-            <Form.Label>กราฟทิพย์ XD</Form.Label>
-          </Row>
         </Row>
-        <Row>
-          
-        <img src="https://media.discordapp.net/attachments/900255663081545761/1093124461600976937/scatter-plot-options-1.png"/>
-        </Row>
-      </div> 
-        
+        <ScatterPlot X={chartx} y={charty} result={result} fx={parseInt(x)}/>
+      <br></br>
+      </div>     
       }
       
     </Container>
