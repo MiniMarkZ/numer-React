@@ -66,7 +66,7 @@ const Myline = (props) => {
   }, [props]);
 
   return (
-    <Chart options={chartData.options} series={chartData.series} type="line" width={1000} height={320} />
+    <Chart options={chartData.options} series={chartData.series} type="line" width={750} height={320} />
   );
 }
 
