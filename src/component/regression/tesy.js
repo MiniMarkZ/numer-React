@@ -56,7 +56,7 @@ function Test() {
       const cols = [];
       for (let j = 0; j < m; j++) {
         
-        cols.push(<Col key={j} xs={3} className="d-flex justify-content-center align-items-center" onChange={(e)=>{ inputn(e,i,j)}}><Form.Control type="number"></Form.Control></Col>);
+        cols.push(<Col key={j} xs={2} className="d-flex justify-content-center align-items-center" onChange={(e)=>{ inputn(e,i,j)}}><Form.Control type="number"></Form.Control></Col>);
 
     }
       rows.push(<Row key={i} className="d-flex justify-content-center align-items-center">{cols}</Row>);
@@ -66,40 +66,42 @@ function Test() {
   };
    
   const calculatetesy = () => {
-    const x = []
-    const y = []
-
-    for (let i = 0; i < n; i++) {
-        const row = tablevalue[i];
-        const xi = parseFloat(row[0]);
-        const yi = parseFloat(row[m-1]);
-        x.push(xi);
-        y.push(yi);
-      }
-      setPlotx(x)
-      setPloty(y)
-
-    const degree = m-1
-    const regression = new polynomialRegression(x, y, degree);
-    console.log(regression)
-    const result = regression.predict(parseInt(X));
-    setA(regression.coefficients)
-    const regres = regression.coefficients
-  
-    setResult(result)
-    console.log("result",result)
-    var Ytmp= []
-
-    for(let i = 0 ; i < n ;i++){
-        for(let j = 0 ; j < m ; j ++){
-            var tmp = 0
-            console.log(`${regres[j]} * ${x[i]}`)
-            tmp += regres[j] * x[i]
+    for(let j = 0 ; j < m-1 ; j++){
+      const x = []
+      const y = []
+      var testdata =[]
+      for (let i = 0; i < n; i++) {
+          const row = tablevalue[i];
+          const xi = parseFloat(row[0]);
+          const yi = parseFloat(row[m-1]);
+          x.push(xi);
+          y.push(yi);
         }
-        Ytmp.push(tmp)
+        setPlotx(x)
+        setPloty(y)
+
+      const degree = m
+      const regression = new polynomialRegression(x, y, degree);
+      console.log(regression)
+      const result = regression.predict(parseInt(X));
+      setA(regression.coefficients)
+      const regres = regression.coefficients
+    
+      setResult(result)
+      console.log("result",result)
+      var Ytmp= []
+
+      for(let i = 0 ; i < n ;i++){
+          for(let j = m-1 ; j > 0 ; j --){
+              var tmp = 0
+              console.log(`j=${j} :${regres[j]} * ${x[i]}`)
+              tmp += Math.pow(regres[j],j) * x[i]
+            }
+          Ytmp.push(tmp)
+      }
+      setYpredict(Ytmp)
+      console.log("ypredict",ypredict)
     }
-    setYpredict(Ytmp)
-    console.log("ypredict",ypredict)
   }
     
 
@@ -132,7 +134,7 @@ function Test() {
         <Form>
             <br></br>
             <Form.Label><h1>{result}</h1></Form.Label>
-            <Row>
+            <Row className="justify-content-center" >
             <Plottest  X={plotx} Y={ploty} result={result} predicty={ypredict} fx={X} table={tablevalue} A={A}/>
             </Row>
             

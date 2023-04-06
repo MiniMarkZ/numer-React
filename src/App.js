@@ -32,6 +32,7 @@ function App() {
         <Route path='/Cramer' element = {<Cramer/>}></Route>
         <Route path='/polynomial' element = {<Polynomial/>}></Route>
         <Route path='/tesy' element={<Tesy/>}/>
+
         </Routes>
       </section>
     </div>

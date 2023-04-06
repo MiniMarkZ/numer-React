@@ -2,10 +2,6 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 
 const Plottest = (props) => {
-  console.log("props",props)
-  // console.log("props table",props.table.length)
-  // console.log("props table",props.table[0])
-  console.log(parseInt(props.fx) , props.result)
   const data = []
   var tmpdata = {}
   tmpdata = {
@@ -19,21 +15,14 @@ const Plottest = (props) => {
     } 
   }
   data.push(tmpdata)
-  tmpdata = {
-    x: props.X,
-    y: props.predicty,
-    type : 'scatter',
-    mode : 'lines',
-    name :  `line Predict` 
-  }
-  data.push(tmpdata)
-  
+ 
+
   tmpdata = {
     x: props.X,
     y: props.Y,
     type : 'scatter',
-    mode : 'lines',
-    name :  `line` 
+    mode : 'markers',
+    name :  `Y input` 
   }
   data.push(tmpdata)
   
@@ -45,16 +34,48 @@ const Plottest = (props) => {
     name :  `Y predict` 
   }
   data.push(tmpdata)
-  
-    tmpdata = {
-      x: props.X,
+
+  for(let i = 0 ; i < props.table[0].length-1 ; i++){ 
+    var xi = [];
+    props.X.map((xVal, index) => xi.push(parseInt(props.table[index][i])));
+    console.log(xi)
+    tmpdata={
+      x: xi,
       y: props.Y,
       type : 'scatter',
       mode : 'markers',
-      name :  `Y input` 
+      name :  `line Y${i}` 
     }
     data.push(tmpdata)
-    
+
+  }
+
+  //--------------------------------
+  console.log("table 0 ",props.table)
+  for(let i = 0 ; i < props.table[0].length-1 ; i++){ 
+    var xi = [];
+    props.X.map((xVal, index) => xi.push(parseInt(props.table[index][i])));
+    console.log(xi)
+    tmpdata={
+      x: xi,
+      y: props.Y,
+      type : 'scatter',
+      mode : 'lines',
+      name :  `line Y${i}` 
+    }
+    data.push(tmpdata)
+
+  }
+
+  tmpdata = {
+    x: props.X,
+    y: props.predicty,
+    type : 'scatter',
+    mode : 'lines',
+    name :  `line Predict` 
+  }
+  data.push(tmpdata)
+  
   const layout = {
     title: 'Line and Scatter Regression'
   };
