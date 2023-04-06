@@ -70,6 +70,7 @@ const FalsePosition =()=>{
                     error:ea
                 }
                 data.push(obj)
+                console.log(obj)
                 console.log("test1")
                 xr = xm;
             }
@@ -160,18 +161,18 @@ const FalsePosition =()=>{
                             <Form.Group className="mb-3" >
                                 <Form.Label> Input f(x)</Form.Label>
                                 <Form.Control type="text" id="equation" value={Equation} onChange={inputEquation} placeholder="Input f(x)" />
-                                <Form.Text className="text-Muted">สมการที่ดีคือ สมการที่สีเหลือง</Form.Text>
+                                {/* <Form.Text className="text-Muted">สมการที่ดีคือ สมการที่สีเหลือง</Form.Text> */}
                                 
                             </Form.Group>
                             <Form.Group className='mb-3'>
                                 <Form.Label> Input XL</Form.Label>
                                 <Form.Control type="number" id="XL" value={XL} onChange={inputXL}  />
-                                <Form.Text className='text-Muted'>ค่า X ที่น้อยที่สุด รึป่าว ?</Form.Text>
+                                {/* <Form.Text className='text-Muted'>ค่า X ที่น้อยที่สุด รึป่าว ?</Form.Text> */}
                             </Form.Group>
                             <Form.Group className='mb-3'>
                                 <Form.Label> Input XR</Form.Label>
                                 <Form.Control type="number" id="XR" value={XR} onChange={inputXR}  />
-                                <Form.Text className='text-Muted'>ค่า X ที่มากที่สุด รึป่าว ?</Form.Text>
+                                {/* <Form.Text className='text-Muted'>ค่า X ที่มากที่สุด รึป่าว ?</Form.Text> */}
                             </Form.Group>
                             <div className="row">
                             <div className="col">

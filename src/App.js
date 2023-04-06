@@ -10,6 +10,7 @@ import Secant from './component/equation/Secant';
 import Taylor from './component/equation/Taylor_series';
 import Cramer from './component/matrix/Cramer';
 import Polynomial from './component/regression/Polynomial';
+import Tesy from './component/regression/tesy';
 
 
 
@@ -30,7 +31,7 @@ function App() {
         <Route path='/Taylor' element = {<Taylor/>}></Route>
         <Route path='/Cramer' element = {<Cramer/>}></Route>
         <Route path='/polynomial' element = {<Polynomial/>}></Route>
-
+        <Route path='/tesy' element={<Tesy/>}/>
         </Routes>
       </section>
     </div>

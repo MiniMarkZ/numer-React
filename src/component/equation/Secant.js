@@ -132,7 +132,7 @@ const Secant = () => {
                           <Form.Group className="mb-3" >
                               <Form.Label> Input f(x)</Form.Label>
                               <Form.Control type="text" id="equation" value={equation} onChange={inputEquation} placeholder="Input f(x)" />
-                              <Form.Text className="text-Muted">สมการที่ดีคือ สมการที่สีเหลือง yellow</Form.Text> 
+                              {/* <Form.Text className="text-Muted">สมการที่ดีคือ สมการที่สีเหลือง yellow</Form.Text>  */}
                               
                           </Form.Group>
                           <Form.Group className='mb-3'>
