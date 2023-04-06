@@ -1,62 +1,69 @@
 import React from 'react';
-import Chart from 'react-apexcharts';
+import Plot from 'react-plotly.js';
 
 const Plottest = (props) => {
-  console.log("props",props) 
-  const arrays = [];
-  props.X.map((xVal, index) => arrays.push([xVal, props.Y[index]]));
-  console.log("asd",arrays)
-  const array2 = props.X.map((xVal, index) => [xVal, parseInt(props.predicty[index])]);
-  console.log("array2",array2)
-    const fx = [[parseInt(props.fx),parseInt(props.result)]] ;
-  console.log(fx)
-  
-   
-  const series = [{
-    name: 'Y',
-    type: 'scatter',
-    data: arrays
-  }, {
-    name: 'Line',
-    type: 'line',
-    data: [array2[0], arrays[array2.length - 1]]
-  },{
-    name: 'result',
-    type: 'scatter',
-    data: fx
+  console.log("props",props)
+  // console.log("props table",props.table.length)
+  // console.log("props table",props.table[0])
+  console.log(parseInt(props.fx) , props.result)
+  const data = []
+  var tmpdata = {}
+  tmpdata = {
+    x: [parseInt(props.fx)],
+    y: [props.result],
+    type : 'scatter',
+    mode : 'markers',
+    name :  `Y predict`,
+    marker: {
+      size: 20
+    } 
   }
-    ];
-  const options = {
-    chart: {
-      height: 350,
-      type: 'line',
-    },
-    fill: {
-      type: 'solid',
-    },
-    markers: {
-      size: [8, 0]
-    },
-    tooltip: {
-      shared: false,
-      intersect: true,
-    },
-    legend: {
-      show: false
-    },
-    xaxis: {
-      type: 'numeric',
-      min: 0,
-      max: 80,
-      tickAmount: 8
-    },
+  data.push(tmpdata)
+  tmpdata = {
+    x: props.X,
+    y: props.predicty,
+    type : 'scatter',
+    mode : 'lines',
+    name :  `line Predict` 
+  }
+  data.push(tmpdata)
+  
+  tmpdata = {
+    x: props.X,
+    y: props.Y,
+    type : 'scatter',
+    mode : 'lines',
+    name :  `line` 
+  }
+  data.push(tmpdata)
+  
+  tmpdata = {
+    x: props.X,
+    y: props.predicty,
+    type : 'scatter',
+    mode : 'markers',
+    name :  `Y predict` 
+  }
+  data.push(tmpdata)
+  
+    tmpdata = {
+      x: props.X,
+      y: props.Y,
+      type : 'scatter',
+      mode : 'markers',
+      name :  `Y input` 
+    }
+    data.push(tmpdata)
+    
+  const layout = {
+    title: 'Line and Scatter Regression'
   };
 
   return (
-    <div className="scatter">
-      <Chart options={options} series={series} type="line" height={350} />
-
-    </div>
+    <Plot
+      data={data}
+      layout={layout}
+    />
   );
 };
 

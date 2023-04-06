@@ -68,10 +68,9 @@ function Test() {
   const calculatetesy = () => {
     const x = []
     const y = []
+
     for (let i = 0; i < n; i++) {
         const row = tablevalue[i];
-        console.log("ra",row[0])
-        console.log(row[2])
         const xi = parseFloat(row[0]);
         const yi = parseFloat(row[m-1]);
         x.push(xi);
@@ -79,23 +78,22 @@ function Test() {
       }
       setPlotx(x)
       setPloty(y)
-      console.log(x)
-      console.log(y)
-      console.log(X)
+
     const degree = m-1
     const regression = new polynomialRegression(x, y, degree);
     console.log(regression)
     const result = regression.predict(parseInt(X));
     setA(regression.coefficients)
     const regres = regression.coefficients
-    
-    console.log("A",A)
+  
     setResult(result)
-    console.log(result)
+    console.log("result",result)
     var Ytmp= []
+
     for(let i = 0 ; i < n ;i++){
         for(let j = 0 ; j < m ; j ++){
             var tmp = 0
+            console.log(`${regres[j]} * ${x[i]}`)
             tmp += regres[j] * x[i]
         }
         Ytmp.push(tmp)
@@ -130,12 +128,17 @@ function Test() {
           {table}
         </Form>
         <br></br>
-        {havedata > 0  && <Button variant="primary" type="button" onClick={Calculate}> Calculate</Button>}
+        {havedata > 0  && <div><Button variant="primary" type="button" onClick={Calculate}> Calculate</Button>
         <Form>
             <br></br>
             <Form.Label><h1>{result}</h1></Form.Label>
-            <Plottest  X={plotx} Y={ploty} result={result} predicty={ypredict} fx={X}/>
+            <Row>
+            <Plottest  X={plotx} Y={ploty} result={result} predicty={ypredict} fx={X} table={tablevalue} A={A}/>
+            </Row>
+            
         </Form>
+        </div>
+        }
       </Form>
     </div>
   );
