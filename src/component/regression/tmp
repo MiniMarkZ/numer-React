@@ -1,0 +1,54 @@
+const x = []
+    const y = []
+    for (let i = 0; i < tablevalue.length; i++) {
+      const row = tablevalue[i]
+      const xi = row.slice(0, m-1)
+      const yi = [row[m-1]] // wrap yi in an array
+      x.push(xi)
+      y.push(yi)
+    }
+
+    console.log("xi",x)
+    console.log("yi",y)
+    // const mlr = new MLR(x, y);
+    // console.log(mlr)
+
+    const xa = [
+        [0, 0],
+        [1, 2],
+        [2, 3],
+        [3, 4]
+      ];
+      // Y0 = X0 * 2, Y1 = X1 * 2, Y2 = X0 + X1
+      const ya = [
+        [0, 0, 0],
+        [2, 4, 3],
+        [4, 6, 5],
+        [6, 8, 7]
+      ];
+      console.log("x",xa)
+      console.log("y",ya)
+      const mlr = new MLR(xa, ya);
+      console.log(mlr.predict([3, 3]));
+    //   const degree = m
+    //   const regression = new polynomialRegression(x, y, degree);
+    //   console.log(regression)
+    //   const result = regression.predict(parseInt(X));
+    //   setA(regression.coefficients)
+    //   const regres = regression.coefficients
+    
+    //   setResult(result)
+    //   console.log("result",result)
+    //   var Ytmp= []
+
+    //   for(let i = 0 ; i < n ;i++){
+    //       for(let j = m-1 ; j > 0 ; j --){
+    //           var tmp = 0
+    //           console.log(`j=${j} :${regres[j]} * ${x[i]}`)
+    //           tmp += Math.pow(regres[j],j) * x[i]
+    //         }
+    //       Ytmp.push(tmp)
+    //   }
+    //   setYpredict(Ytmp)
+    //   console.log("ypredict",ypredict)
+    //}
