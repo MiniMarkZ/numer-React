@@ -43,6 +43,38 @@
         }
       }
     },
+      "/getregression/{path}": {
+        "get": {
+          "summary": "Get equations by method",
+          "description": "Returns equations that match the specified method.",
+          "parameters": [
+            {
+              "name": "path",
+              "in": "path",
+              "description": "The method name",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Equation"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
     "/testswagger": {
       "get": {
         "summary": "Test swagger",

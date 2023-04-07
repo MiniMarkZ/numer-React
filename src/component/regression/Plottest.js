@@ -1,12 +1,21 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
+import { json } from 'react-router-dom';
 
 const Plottest = (props) => {
+    console.log("props",props)
+    var xtmp = parseInt(props.fx[0])
+    console.log("xtmp",xtmp)
+    console.log("ytmp")
+    var arrayy = []
+    props.Y.map((yVal, index) => arrayy.push(props.Y[index][0]));
+    console.log("arrayy",arrayy)
   const data = []
   var tmpdata = {}
+
   tmpdata = {
-    x: [parseInt(props.fx)],
-    y: [props.result],
+    x: [xtmp],
+    y: [JSON.parse(props.result)],
     type : 'scatter',
     mode : 'markers',
     name :  `Y predict`,
@@ -37,14 +46,14 @@ const Plottest = (props) => {
 
   for(let i = 0 ; i < props.table[0].length-1 ; i++){ 
     var xi = [];
-    props.X.map((xVal, index) => xi.push(parseInt(props.table[index][i])));
-    console.log(xi)
+    props.Y.map((yVal, index) => xi.push(props.X[index][i]));
+    console.log("xi = ",xi)
     tmpdata={
       x: xi,
-      y: props.Y,
+      y: arrayy,
       type : 'scatter',
       mode : 'markers',
-      name :  `line Y${i}` 
+      name :  `line X${i}` 
     }
     data.push(tmpdata)
 
@@ -54,11 +63,11 @@ const Plottest = (props) => {
   console.log("table 0 ",props.table)
   for(let i = 0 ; i < props.table[0].length-1 ; i++){ 
     var xi = [];
-    props.X.map((xVal, index) => xi.push(parseInt(props.table[index][i])));
+    props.Y.map((yVal, index) => xi.push(props.X[index][i]));
     console.log(xi)
     tmpdata={
       x: xi,
-      y: props.Y,
+      y: arrayy,
       type : 'scatter',
       mode : 'lines',
       name :  `line Y${i}` 
@@ -66,9 +75,11 @@ const Plottest = (props) => {
     data.push(tmpdata)
 
   }
-
-  tmpdata = {
-    x: props.X,
+  var x0 = [];
+  props.Y.map((yVal, index) => x0.push(props.X[index][0]));
+  console.log("x0",x0)
+  tmpdata ={
+    x: x0,
     y: props.predicty,
     type : 'scatter',
     mode : 'lines',

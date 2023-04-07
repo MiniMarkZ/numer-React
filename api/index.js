@@ -37,6 +37,15 @@ app.get('/getsample/:path*', (req, res) => {
   });
 });
 
+app.get('/getregression/:path*', (req, res) => {
+  var path = req.params.path + req.params[0];
+  console.log(path);
+  const sql = `SELECT * FROM regression WHERE method = '${path}'`;
+  pool.query(sql, function (error, results, fields) {
+    if (error) throw error;
+    res.send(results);
+  });
+});
 // app.get('/getsample/:path*', (req, res) => {
 //   var path = req.params.path + req.params[0];
 //   const bisectionEquations = equations.filter(equation => equation.method === path);
