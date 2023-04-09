@@ -11,14 +11,24 @@ import Taylor from './component/equation/Taylor_series';
 import Cramer from './component/matrix/Cramer';
 import Polynomial from './component/regression/Polynomial';
 import Tesy from './component/regression/tesy';
+import Usertoken from './component/Usertoken';
+import { useState } from 'react';
 
 
 
 function App() {
+  const [token,setToken] = useState(localStorage.getItem('token'))
+
   return (
     <div style={{textAlignVertical: "center",textAlign: "center",}}>
       <Navbar/>
-      <section>
+      {console.log("asd",token)}
+
+      {
+        token == null && <Usertoken/>
+      }
+      { token  &&
+        <section>
         <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/home' element={<Home/>}></Route>
@@ -32,9 +42,9 @@ function App() {
         <Route path='/Cramer' element = {<Cramer/>}></Route>
         <Route path='/polynomial' element = {<Polynomial/>}></Route>
         <Route path='/tesy' element={<Tesy/>}/>
-
         </Routes>
       </section>
+      }
     </div>
   );
 }

@@ -73,7 +73,7 @@ function Test() {
       const cols = [];
       for (let j = 0; j < m; j++) {
         
-        cols.push(<Col key={j} xs={2} onChange={(e)=>{ inputn(e,i,j)}} className="d-flex justify-content-center align-items-center" ><Form.Control type="number" placeholder={tablevalue[i][j]} ></Form.Control></Col>);
+        cols.push(<Col key={j} xs={2} className="d-flex justify-content-center align-items-center" ><Form.Control type="number" placeholder={tablevalue[i][j]} ></Form.Control></Col>);
 
     }
       rows.push(<Row key={i} className="d-flex justify-content-center align-items-center">{cols}</Row>);
@@ -124,43 +124,66 @@ function Test() {
   }
   
   const [api,setApi] = useState([])
-  useEffect(() => {
-      axios.get('http://localhost:8080/getregression/polynomial')
-        .then(response => {
-            console.log(response.data)
-          setApi(response.data);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-  }, []);
+//   useEffect(() => {
+//       axios.get('http://localhost:8080/getregression/polynomial')
+//         .then(response => {
+//             console.log(response.data)
+//           setApi(response.data);
+//         })
+//         .catch(error => {
+//           console.error(error);
+//         });
+//   }, []);
+
+    const getapi = async (e) => {
+        try {
+        const token = localStorage.getItem('token')
+        console.log(token)
+        const response = await axios.get(`http://localhost:8080/getregression/polynomial?a=${e}`,{ headers:{ Authorztion : token}})
+        console.log("data", response.data);
+        setApi(response.data);
+        return response.data
+        } catch (error) {
+        console.error(error);
+        }
+    };
+  
+    var loop = 0
     const [sample,setSample] = useState([])
     const [tablesample , setTablsample] = useState(0)
-    const sampletest = (e) => {
+    const sampletest = async (e) => {
         setTablsample(0)
         setSample(0)
-        const index = api.findIndex((item) => Number(item.M) === Number(e.target.getAttribute("value")));
-        if (index > -1) {
-          console.log(`e.target.value found at index ${index}`);
-        } else {
-          console.log(`e.target.value not found in api array`);
-        }
-        var tmp = api[index]
+        // if(loop = 0 ){
+        //     loop=1
+        //     sampletest(e)
+        // }
+        const apk = await getapi(Number(e.target.getAttribute("value")));
+        // const index = api.findIndex((item) => Number(item.M) === Number(e.target.getAttribute("value")));
+        // if (index > -1) {
+        //   console.log(`e.target.value found at index ${index}`);
+        // } else {
+        //   console.log(`e.target.value not found in api array`);
+        // }
+        var tmp = apk
         setSample(tmp)
-        console.log(tmp)
-        setM(tmp.M)
-        setN(tmp.N)
-        setTablevalue(Array.from({ length: tmp.N}, () => new Array(m).fill("")));
-        console.log("m=",tmp.M)
+        console.log('tmp=',tmp)
+        setM(tmp[0].M)
+        setN(tmp[0].N)
+        setTablevalue(Array.from({ length: tmp[0].N}, () => new Array(m).fill("")));
+        console.log("m=",tmp[0].M)
         setHavedata(1)
         xcreate();
-        setTablsample(1)
+        await setTablsample(1)
         // createTable();
-        const arr = tmp.X.split(",");
-        setXpredict(arr.map(Number));        
-        setTablevalue(JSON.parse(tmp.array))
+        const arr = tmp[0].X.split(",");
+        await setXpredict(arr.map(Number));        
+        await setTablevalue(JSON.parse(tmp[0].array))
         console.log("tavle",tablevalue)
-        console.log(tablevalue[1]) 
+        console.log(tablevalue[1])
+        // if(loop !=0){
+        //     loop=0
+        // } 
       };
       
 
@@ -190,9 +213,9 @@ function Test() {
           Samples
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item value="2" onClick={sampletest}>M=2 N=9</Dropdown.Item>
-          <Dropdown.Item value="3" onClick={sampletest}>M=3 N=9</Dropdown.Item>
-          <Dropdown.Item value="4" onClick={sampletest}>M=4 N=9</Dropdown.Item>
+          <Dropdown.Item value="1" onClick={sampletest}>M=2 N=9</Dropdown.Item>
+          <Dropdown.Item value="2" onClick={sampletest}>M=3 N=9</Dropdown.Item>
+          <Dropdown.Item value="3" onClick={sampletest}>M=4 N=9</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </div>
@@ -210,7 +233,7 @@ function Test() {
             <br></br>
             <Form.Label><h1>{result}</h1></Form.Label>
             <Row className="justify-content-center" >
-            <Plottest  X={plotx} Y={ploty} result={result} predicty={ypredict} fx={xpredict} table={tablevalue} A={A}/>
+            {/* <Plottest  X={plotx} Y={ploty} result={result} predicty={ypredict} fx={xpredict} table={tablevalue} A={A}/> */}
             </Row>
             
         </Form>
