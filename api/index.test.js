@@ -1,97 +1,61 @@
 const request = require('supertest');
 const jwt = require('jsonwebtoken');
 const app = require('./index'); 
-// const realapp = require('./index2'); 
-// const { createConnection } = require('mysql2/promise');
 var secretkey = "lnwza"
 
-// jest.mock('mysql2/promise', () => ({
-//   createConnection: jest.fn(),
-// }));
-
-// describe('GET /getregression/:path*', () => {
-//   let app, connectionMock;
-
-//   beforeAll(() => {
-//     // Create a mock database connection
-//     connectionMock = {
-//       query: jest.fn(),
-//       end: jest.fn(),
-//     };
-    
-//     createConnection.mockResolvedValue(connectionMock);
-
-//     // Create the app instance
-//     app = realapp.createserver();
-//   });
-
-//   afterAll(() => {
-//     // Close the mock database connection
-//     connectionMock.end.mockResolvedValue();
-//   });
-
-//   it('should return regression data', async () => {
-//     const mockResults = [{ id: 1, method: 'polynomial', M: 2, N: 9 }];
-//     connectionMock.query.mockResolvedValue([mockResults]);
-
-//     const response = await request(app)
-//       .get('/getregression/polynomial?a=1')
-//       .set('Authorization', 'Bearer valid_token');
-
-//     expect(response.status).toBe(200);
-//     expect(response.body).toEqual(mockResults);
-//   });
-
-//   it('should throw an error if the query fails', async () => {
-//     const mockError = new Error('Database query failed');
-//     connectionMock.query.mockRejectedValue(mockError);
-
-//     const response = await request(app)
-//       .get('/getregression/polynomial?a=1')
-//       .set('Authorization', 'Bearer valid_token');
-
-//     expect(response.status).toBe(400);
-//     expect(response.body).toEqual({ error: 'Database error' });
+// describe('GET /gettoken/:name', () => {
+//   it('responds with a token', async () => {
+//     const response = await request(app).get('/gettoken/mark').expect(200);
+//     const decoded = jwt.verify(response.text, secretkey);
+//     expect(decoded.name).toBe("mark");
 //   });
 // });
+
+// describe('GET /test/token', () => {
+//   it('responds with the user name', async () => {
+//     const token = jwt.sign({ name: 'mark' }, secretkey);
+//     const response = await request(app).get('/test/token').set('Authorization',token)
   
+//     expect(response.text).toBe('mark');
+//   });
 
-describe('GET /gettoken/:name', () => {
-  
-  it('responds with a token', async () => {
-    const response = await request(app)
-      .get('/gettoken/mark')
-      .expect(200);
+//   it('responds with 401 when no token is provided', async () => {
+//     const response = await request(app)
+//       .get('/test/token')
+//       .expect(401);
 
-    const decoded = jwt.verify(response.text, secretkey);
-    expect(decoded.name).toBe("mark");
+//     expect(response.text).toBe('Access denied. No token provided.');
+//   });
 
-  });
-});
+//   it('responds with 400 when an invalid token is provided', async () => {
+//     const response = await request(app)
+//       .get('/test/token')
+//       .set('authorization', 'invalid-token')
+//       .expect(400);
 
-describe('GET /test/token', () => {
-  it('responds with the user name', async () => {
-    const token = jwt.sign({ name: 'mark' }, secretkey);
-    const response = await request(app).get('/test/token').set('Authorization',token)
-  
-    expect(response.text).toBe('mark');
-  });
+//     expect(response.text).toBe('Invalid token.');
+//   });
+// });
 
-  it('responds with 401 when no token is provided', async () => {
-    const response = await request(app)
-      .get('/test/token')
-      .expect(401);
 
-    expect(response.text).toBe('Access denied. No token provided.');
-  });
+const mysql = require('mysql2');
+const { mockDeep } = require('jest-mock-extended');
+const mockPool = mockDeep(mysql.Pool);
 
-  it('responds with 400 when an invalid token is provided', async () => {
-    const response = await request(app)
-      .get('/test/token')
-      .set('authorization', 'invalid-token')
-      .expect(400);
 
-    expect(response.text).toBe('Invalid token.');
+// Replace the pool object with the mock object
+jest.mock('./db', () => mockPool);
+
+describe('GET /getsample/:path*', () => {
+  const mockResults = [
+    {id: 1, method: 'Bisection', Equation: '(x^4)-13', XL: 0, XR: 5, X0: null, X1: null},
+    {id: 2, method: 'Bisection', Equation: '(x^4)-13', XL: 5, XR: 10, X0: null, X1: null}
+  ];
+  mockPool.query.mockResolvedValue(mockResults);
+  it('should return value correct results', async () => {
+
+    const res = await request(app).get('/getsample/Bisection');
+    expect(res.body).toEqual(mockResults);
   });
 });
 

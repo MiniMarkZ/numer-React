@@ -20,6 +20,7 @@ const pool = mysql.createPool({
   database: 'numer' || process.env.DB_NAME,
   password: "" || process.env.DB_PASSWORD,
 });
+
 // //---------------------- 
 // const pool = mysql.createPool({
 //   host: process.env.DB_HOST,
@@ -72,7 +73,7 @@ app.get('/gettoken/:name',(req,res) =>{
 })
 
 function verifyToken(req, res, next) {
-  console.log(",k")
+  console.log("มา verifly")
   const token =  req.headers.authorization
   console.log("req.headers",req.headers.authorization)
   if (!token) {
