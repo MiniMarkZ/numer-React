@@ -21,8 +21,8 @@ jobs:
       with:
         node-version: 18
     - name: npm i
-      run: npm i
       run: |
+          npm i
           cd ./api
           npm i
     - name: test front
