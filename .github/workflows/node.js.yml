@@ -31,6 +31,5 @@ jobs:
       run: |
           cd ./api
           npm test
-    - name: docker
-      run: docker-compose build
+
         
