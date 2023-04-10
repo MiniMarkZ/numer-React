@@ -38,25 +38,53 @@ var secretkey = "lnwza"
 // });
 
 
-const mysql = require('mysql2');
-const { mockDeep } = require('jest-mock-extended');
-const mockPool = mockDeep(mysql.Pool);
+// const mysql = require('mysql2');
+// const { mockDeep } = require('jest-mock-extended');
+// const mockPool = mockDeep(mysql.Pool);
 
 
-// Replace the pool object with the mock object
-jest.mock('./db', () => mockPool);
+// // Replace the pool object with the mock object
+// jest.mock('./db', () => mockPool);
+
+// describe('GET /getsample/:path*', () => {
+//   const mockResults = [
+//     {id: 1, method: 'Bisection', Equation: '(x^4)-13', XL: 0, XR: 5, X0: null, X1: null},
+//     {id: 2, method: 'Bisection', Equation: '(x^4)-13', XL: 5, XR: 10, X0: null, X1: null}
+//   ];
+//   mockPool.query.mockResolvedValue(mockResults);
+//   it('should return value correct results', async () => {
+
+//     const res = await request(app).get('/getsample/Bisection');
+//     expect(res.body).toEqual(mockResults);
+//   });
+// });
+
+
+
+
+const pool = require('./db'); // assuming you have a separate file for creating a database connection pool
+
+jest.mock('./db'); // Mocking the pool module to avoid actually hitting the database
 
 describe('GET /getsample/:path*', () => {
-  const mockResults = [
-    {id: 1, method: 'Bisection', Equation: '(x^4)-13', XL: 0, XR: 5, X0: null, X1: null},
-    {id: 2, method: 'Bisection', Equation: '(x^4)-13', XL: 5, XR: 10, X0: null, X1: null}
-  ];
-  mockPool.query.mockResolvedValue(mockResults);
-  it('should return value correct results', async () => {
+  test('should return results from the database', async () => {
+    const sql = "SELECT * FROM equation WHERE method = 'Bisection'";
 
-    const res = await request(app).get('/getsample/Bisection');
-    expect(res.body).toEqual(mockResults);
+    // Mocking the results of the database query
+    const mockResults = [
+          {id: 1, method: 'Bisection', Equation: '(x^4)-13', XL: 0, XR: 5, X0: null, X1: null},
+          {id: 2, method: 'Bisection', Equation: '(x^4)-13', XL: 5, XR: 10, X0: null, X1: null}
+        ];
+    pool.query.mockImplementation((sql, callback) => {
+      callback(null, mockResults);
+    });
+
+    // Making a request to the endpoint
+    const response = await request(app).get('/getsample/Bisection');
+
+    // Checking the response
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual(mockResults);
   });
+
 });
-
-
