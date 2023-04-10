@@ -139,7 +139,7 @@ function Test() {
         try {
         const token = localStorage.getItem('token')
         console.log(token)
-        const response = await axios.get(`http://localhost:8080/getregression/polynomial?a=${e}`,{ headers:{ Authorztion : token}})
+        const response = await axios.get(`http://localhost:8080/getregression/polynomial?a=${e}`,{ headers:{ authorization : token}})
         console.log("data", response.data);
         setApi(response.data);
         return response.data

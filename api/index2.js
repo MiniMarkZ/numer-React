@@ -1,9 +1,11 @@
 const express = require('express');
-const port = 8080;
+const port = 7070;
 var cors = require('cors')
 const app = express();
 // const equations = require('./data/equation.json');
-app.use(cors())
+
+function createserver(){
+  app.use(cors())
 var secretkey = "lnwza"
 var jwt = require('jsonwebtoken');
 // var token = jwt.sign({ name: 'mama' }, secretkey);
@@ -100,6 +102,7 @@ app.get('/test/token',verifyToken,(req,res)=>{
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
-
-
-module.exports = app;
+return app
+}
+// createserver()
+module.exports = {createserver};
