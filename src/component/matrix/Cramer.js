@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-
+import { cramer } from "./calcramer";
 function App() {
   const [n, setN] = useState(0);
   const [matrixA, setMatrixA] = useState([]);
@@ -38,59 +38,55 @@ function App() {
     setMatrixB(newMatrixB);
   };
 
-  const calculate = () => {
-    let newResult = [];
-    for (let i = 0; i < n; i++) {
-      let sum = 0;
-      for (let j = 0; j < n; j++) {
-        sum += matrixA[i][j] * matrixB[j];
-      }
-      newResult.push(sum);
-    }
-    setResult(newResult);
-  };
 
-  function cramer() {
-    console.log(matrixA)
-    const n = matrixA.length;
-    const detA = determinant(matrixA);
-    console.log("detA",detA)
-    if (detA === 0) {
-      return null; // matrixA is singular, no unique solution exists
-    }
+  // function cramer() {
+  //   console.log(matrixA)
+  //   const n = matrixA.length;
+  //   const detA = determinant(matrixA);
+  //   console.log("detA",detA)
+  //   if (detA === 0) {
+  //     return null; // matrixA is singular, no unique solution exists
+  //   }
     
-    const results = [];
+  //   const results = [];
   
-    for (let i = 0; i < n; i++) {
-      const matrixAi = matrixA.map((row, j) => row.map((cell, k) => (k === i ? matrixB[j] : cell)));
-      const detAi = determinant(matrixAi);
-      console.log("detAi",detAi)
-      const xi = detAi / detA;
-      console.log("xi =",xi)
-      results.push(xi);
-      console.log("result =",results)
-    }
-    console.log(results)
-    setResult(results)
-    return results;
-  }
+  //   for (let i = 0; i < n; i++) {
+  //     const matrixAi = matrixA.map((row, j) => row.map((cell, k) => (k === i ? matrixB[j] : cell)));
+  //     const detAi = determinant(matrixAi);
+  //     console.log("detAi",detAi)
+  //     const xi = detAi / detA;
+  //     console.log("xi =",xi)
+  //     results.push(xi);
+  //     console.log("result =",results)
+  //   }
+  //   console.log(results)
+  //   setResult(results)
+  //   return results;
+  // }
   
-  function determinant(matrix) {
-    const n = matrix.length;
+  // function determinant(matrix) {
+  //   const n = matrix.length;
   
-    if (n === 1) {
-      return matrix[0][0];
-    }
+  //   if (n === 1) {
+  //     return matrix[0][0];
+  //   }
   
-    let det = 0;
+  //   let det = 0;
   
-    for (let i = 0; i < n; i++) {
-      const submatrix = matrix.slice(1).map((row) => row.filter((_, j) => j !== i));
-      const sign = i % 2 === 0 ? 1 : -1;
-      det += sign * matrix[0][i] * determinant(submatrix);
-    }
-    console.log("det คือ ",det)
-    return det;
+  //   for (let i = 0; i < n; i++) {
+  //     const submatrix = matrix.slice(1).map((row) => row.filter((_, j) => j !== i));
+  //     const sign = i % 2 === 0 ? 1 : -1;
+  //     det += sign * matrix[0][i] * determinant(submatrix);
+  //   }
+  //   console.log("det คือ ",det)
+  //   return det;
+  // }
+
+  const Calcramer = () =>{
+    console.log("matrixB = ",matrixB)
+    var {re_results} =cramer(matrixA , matrixB )
+    console.log("re_results in creaer",re_results)
+    setResult(re_results)
   }
   
 
@@ -167,7 +163,7 @@ function App() {
       </Row>
       {matrixA.length > 0 && matrixB.length > 0 && (
         <div>
-          <Button variant="primary" className="mt-4" onClick={cramer}>
+          <Button variant="primary" className="mt-4" onClick={Calcramer}>
           Calculate
           </Button>
         </div>

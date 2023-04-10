@@ -14,19 +14,19 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //--เชื่อม database mysql -- 
 const mysql = require('mysql2');
-// const pool = mysql.createPool({
-//   host: '127.0.0.1',
-//   user: 'root',
-//   database: 'numer',
-//   password: "1234",
-// });
-// //---------------------- 
 const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
+  host: '127.0.0.1',
+  user: 'root',
+  database: 'numer',
+  password: "",
 });
+// //---------------------- 
+// const pool = mysql.createPool({
+//   host: process.env.DB_HOST,
+//   user: process.env.DB_USER,
+//   database: process.env.DB_NAME,
+//   password: process.env.DB_PASSWORD,
+// });
 
 app.get('/users', function (req, res) {
   pool.query('SELECT * FROM equation', function (error, results, fields) {

@@ -6,10 +6,11 @@ import Myline from "./Myline";
 import Mytable from "./Mytable";
 import Popup from "./Popup";
 import axios from 'axios';
+import {Calbisection} from './calbi';
 
 const Bisection =()=>{
     const [valueerror , setValueerror] = useState([]);
-    const data =[];
+    let data =[];
     const [valueIter, setValueIter] = useState([]);
     const [valueXl, setValueXl] = useState([]);
     const [valueXm, setValueXm] = useState([]);
@@ -32,57 +33,57 @@ const Bisection =()=>{
 
     const error =(xold, xnew)=> Math.abs((xnew-xold)/xnew)*100;
     
-    const Calbisection = (xl, xr) => {
-        var xm,fXm,fXr,ea,fXl;
-        var iter = 0;
-        var MAX = 50;
-        const e = 0.00001;
-        var obj={};
-        xm = (xl+xr)/2.0;
-        fXr = evaluate(Equation, {x:xr})
-        fXl = evaluate(Equation, {x:xl})
-        console.log("fXr * fXl > 0 =",fXr * fXm)
-        if(fXr * fXl > 0){
-            console.log('error')
-            setCalerror(true)
-            setNodata(false)
-            return
-        }
-        do
-        {
-            xm = (xl+xr)/2.0;
-            fXr = evaluate(Equation, {x:xr})
-            fXm = evaluate(Equation, {x:xm})
-            iter ++;
-            if (fXm*fXr > 0)
-            {
-                ea = error(xr, xm);
-                obj = {
-                    iteration:iter,
-                    Xl:xl,
-                    Xm:xm,
-                    Xr:xr,
-                    error:ea
-                }
-                data.push(obj)
-                xr = xm;
-            }
-            else if (fXm*fXr < 0)
-            {
-                ea = error(xl, xm);
-                obj = {
-                    iteration:iter,
-                    Xl:xl,
-                    Xm:xm,
-                    Xr:xr,
-                    error:ea
-                }
-                data.push(obj)
-                xl = xm;
-            }
-        }while(ea>e && iter<MAX)
-        setX(xm)
-    }
+    // const Calbisection = (xl, xr) => {
+    //     var xm,fXm,fXr,ea,fXl;
+    //     var iter = 0;
+    //     var MAX = 50;
+    //     const e = 0.00001;
+    //     var obj={};
+    //     xm = (xl+xr)/2.0;
+    //     fXr = evaluate(Equation, {x:xr})
+    //     fXl = evaluate(Equation, {x:xl})
+    //     console.log("fXr * fXl > 0 =",fXr * fXm)
+    //     if(fXr * fXl > 0){
+    //         console.log('error')
+    //         setCalerror(true)
+    //         setNodata(false)
+    //         return
+    //     }
+    //     do
+    //     {
+    //         xm = (xl+xr)/2.0;
+    //         fXr = evaluate(Equation, {x:xr})
+    //         fXm = evaluate(Equation, {x:xm})
+    //         iter ++;
+    //         if (fXm*fXr > 0)
+    //         {
+    //             ea = error(xr, xm);
+    //             obj = {
+    //                 iteration:iter,
+    //                 Xl:xl,
+    //                 Xm:xm,
+    //                 Xr:xr,
+    //                 error:ea
+    //             }
+    //             data.push(obj)
+    //             xr = xm;
+    //         }
+    //         else if (fXm*fXr < 0)
+    //         {
+    //             ea = error(xl, xm);
+    //             obj = {
+    //                 iteration:iter,
+    //                 Xl:xl,
+    //                 Xm:xm,
+    //                 Xr:xr,
+    //                 error:ea
+    //             }
+    //             data.push(obj)
+    //             xl = xm;
+    //         }
+    //     }while(ea>e && iter<MAX)
+    //     setX(xm)
+    // }
 
 
     
@@ -105,7 +106,13 @@ const Bisection =()=>{
         console.log("asdadspkoasdo",api)
         const xlnum = parseFloat(XL)
         const xrnum = parseFloat(XR)
-        Calbisection(xlnum,xrnum);
+        // Calbisection(xlnum,xrnum);
+        const {re_data,New_N} = Calbisection(xlnum,xrnum,Equation)
+        console.log("redata",re_data)
+        data = re_data
+        setX(New_N)
+
+        setNodata(false)
         setall();   
     }
 
