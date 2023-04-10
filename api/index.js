@@ -6,7 +6,7 @@ const app = express();
 app.use(cors())
 var secretkey = "lnwza"
 var jwt = require('jsonwebtoken');
-// var token = jwt.sign({ name: 'mama' }, secretkey);
+// var token = jwt.sign({ name: 'mark' }, secretkey);
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
@@ -47,7 +47,7 @@ app.get('/getsample/:path*', (req, res) => {
   });
 });
 
-app.get('/getregression/:path*',verifyToken,(req, res) => {
+app.get('/getregression/:path*',(req, res) => {
   const {a} = req.query;
   var path = req.params.path + req.params[0];
   console.log("a=",a)
