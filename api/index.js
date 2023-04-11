@@ -59,7 +59,7 @@ app.get('/getregression/:path*',(req, res) => {
   });
 });
 
-// // app.get('/getsample/:path*', (req, res) => {
+// // app.get('/getsample/:path*',verifyToken, (req, res) => {
 // //   var path = req.params.path + req.params[0];
 // //   const bisectionEquations = equations.filter(equation => equation.method === path);
 // //   res.send(bisectionEquations);
