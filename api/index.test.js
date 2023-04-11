@@ -32,6 +32,20 @@ describe('GET /test/token', () => {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // describe('/getsample/:path*', () => {
 //   it('test getsample path', async () => {
 //     const response = await request(app).get('/getsample/Bisection');
@@ -62,9 +76,16 @@ describe('GET /test/token', () => {
 
 // describe('/getregression/:path*', () => {
 //   it('test getsample path', async () => {
-//     const responsetoken = await request(app).get('/gettoken/mark').expect(200);
 //     const response = await request(app).get('/getregression/polynomial?a=1')
-//     const expectedSampleData = [{ id: 1, method: 'polynomial', M: 2, N: 9, X: '65', array: '[[10,5],[15,9],[20,15],[30,18],[40,22],[50,30],[60,35],[70,38],[80,43]]' }];
+//     const expectedSampleData = [
+//       { id: 1,
+//         method: 'polynomial',
+//         M: 2, 
+//         N: 9, 
+//         X: '65', 
+//         array: '[[10,5],[15,9],[20,15],[30,18],[40,22],[50,30],[60,35],[70,38],[80,43]]' 
+//       }
+//     ];
 //     const parsedResponse = JSON.parse(response.text);
 //     expect(parsedResponse).toEqual(expectedSampleData);
 //   });

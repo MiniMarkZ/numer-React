@@ -13,11 +13,8 @@ export const Calbisection = (xl, xr,Equation) => {
     xm = (xl+xr)/2.0;
     fXr = evaluate(Equation, {x:xr})
     fXl = evaluate(Equation, {x:xl})
-    console.log("fXr * fXl > 0 =",fXr * fXm)
-    // if(fXr * fXl > 0){
-    //     console.log('error')
-    //     return
-    // }
+
+
     do
     {
         xm = (xl+xr)/2.0;
