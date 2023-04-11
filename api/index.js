@@ -47,7 +47,7 @@ app.get('/getsample/:path*', (req, res) => {
   });
 });
 
-app.get('/getregression/:path*',(req, res) => {
+app.get('/getregression/:path*',verifyToken,(req, res) => {
   const {a} = req.query;
   var path = req.params.path + req.params[0];
   console.log("a=",a)
@@ -59,7 +59,7 @@ app.get('/getregression/:path*',(req, res) => {
   });
 });
 
-// // app.get('/getsample/:path*',verifyToken, (req, res) => {
+// // app.get('/getsample/:path*',(req, res) => {
 // //   var path = req.params.path + req.params[0];
 // //   const bisectionEquations = equations.filter(equation => equation.method === path);
 // //   res.send(bisectionEquations);
