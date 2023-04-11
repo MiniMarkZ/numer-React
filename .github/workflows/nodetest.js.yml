@@ -26,6 +26,7 @@ jobs:
       run: |
           npm i 
           cd ./api
+          npm i
     - name: test-front
       run: npm test
     - name: test api
